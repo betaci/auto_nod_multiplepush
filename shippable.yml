@@ -11,14 +11,14 @@ node_js:
   #- 5.0
 
 build:
-  pre_ci:
-    - docker build -t=quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush .
-    - docker build -t=shiphitchcock1/hitchcock1_nod_multiplepush:multiple .
+  #pre_ci:
+   # - docker build -t=quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush .
+    #- docker build -t=shiphitchcock1/hitchcock1_nod_multiplepush:multiple .
 
   pre_ci_boot:
     image_name: drydock/u12nod
     image_tag: prod
-    pull: false
+    pull: true
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
