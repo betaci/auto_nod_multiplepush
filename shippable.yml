@@ -14,7 +14,7 @@ build:
   pre_ci:
     - docker build -t=quay.io/shippablequay/shiphitchcock1_auto_node .
     - docker build -t=shiphitchcock1/auto_nod_multiplepush .
-    - docker build -t=shippabledocker/shiphitchcock1_auto_nod
+    #- docker build -t=shippabledocker/shiphitchcock1_auto_nod
 
   pre_ci_boot:
     image_name: drydock/u12nod
