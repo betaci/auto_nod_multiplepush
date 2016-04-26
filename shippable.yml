@@ -31,8 +31,8 @@ build:
     - docker push quay.io/shippablequay/shiphitchcock1_auto_node
     - docker tag -f shiphitchcock1/auto_nod_multiplepush:latest shiphitchcock1/auto_nod_multiplepush
     - docker push shiphitchcock1/auto_nod_multiplepush
-    - docker tag -f shiphitchcock1/auto_nod_multiplepush:latest shippabledocker/shiphitchcock1_auto_nod
-    - docker push shippabledocker/shiphitchcock1_auto_nod
+  #  - docker tag -f shiphitchcock1/auto_nod_multiplepush:latest shippabledocker/shiphitchcock1_auto_nod
+   # - docker push shippabledocker/shiphitchcock1_auto_nod
     
 integrations:
   hub:
