@@ -29,8 +29,8 @@ build:
   post_ci:
     - docker tag -f shiphitchcock1/auto_nod_push:latest quay.io/shippablequay/shiphitchcock1_auto_node
     - docker push quay.io/shippablequay/shiphitchcock1_auto_node
-    - docker tag -f shiphitchcock1/auto_nod_push:latest shiphitchcock1/auto_nod_push:test
-    - docker push shiphitchcock1/auto_nod_push:test
+    - docker tag -f shiphitchcock1/auto_nod_push:latest shiphitchcock1/auto_nod_push:retest
+    - docker push shiphitchcock1/auto_nod_push:retest
     #- docker tag -f shiphitchcock1/auto_nod_push:latest shippabledocker/shiphitchcock1_auto_nod
     #- docker push shippabledocker/shiphitchcock1_auto_nod
     
