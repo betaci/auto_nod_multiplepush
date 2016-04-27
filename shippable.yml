@@ -9,31 +9,42 @@ node_js:
   #- iojs-v2
   #- iojs-v3
   #- 5.0
-
+  
+env:
+ global:
+    - PROJECT_ID="571f51d0c77dae78a8fce860"
+    - secure: qCkL1dtFEke8c3Iz0mW8RkFIFDvUqZo8X/yW/Z8NvM5d1+FbsnqRBTeEERET2oxaGlK2mT7hbxNGER/G3hgMj2xAWscUw+six0gbXTP8ux2jxdERw7tM1jksN8r94gzE01RhpJtXTSf+gfB9Y4V0SnJsEL8uf7n8lprW6Y0cnHuBaCfhWKFwBY6dDPN5n7ndr8v377BP4fummBj6k8T9m9/T3BlRh9bndQ+VPARsbO6JAqrM4xciIaQyGq24Z9CD4WxeCjQI/m8u9PkKp+9qdWdulig6EJBCPJkjIx77TcJp9qmzY0sgK/hXyesfj1BV98+hoOYISmjhzJ5mlW4BlQ==
+    
 build:
-  pre_ci:
-    - docker build -t=quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush .
-    - docker build -t=shiphitchcock1/hitchcock1_nod_multiplepush:multiple .
+  #pre_ci:
+   # - docker build -t=quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush .
+    #- docker build -t=shiphitchcock1/hitchcock1_nod_multiplepush:multiple .
 
   pre_ci_boot:
-    image_name: drydock/u12nod
+    image_name: drydock/u14nod
     image_tag: prod
-    pull: false
+    pull: true
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
     - ps -eax
     - ls -al
-
-  post_ci:
-    - docker tag -f drydock/u12nod:prod quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
-    - docker push quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
-    - docker tag -f drydock/u12nod:prod shiphitchcock1/hitchcock1_nod_multiplepush:multiple
-    - docker push shiphitchcock1/hitchcock1_nod_multiplepush:multiple
+    - echo $PROJECT_ID
+    - JSON='{"projectId":"$PROJECT_ID","branchName":"master","type":"push"}'
+    - 'curl -H "Authorization: apiToken $apiToken" -H "Content-Type: application/json" -d "{\"projectId\": \"$PROJECT_ID\"}" https://apibeta.shippable.com/projects/$PROJECT_ID/newbuild?branch=postci-mul'
+    - 'curl -H "Authorization: apiToken $apiToken" -H "Content-Type: application/json" -d "{\"projectId\": \"$PROJECT_ID\"}" https://apibeta.shippable.com/projects/$PROJECT_ID/newbuild'
+  
+  #post_ci:
+    # - docker tag -f drydock/u12nod:prod quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
+    #- docker build -t=quay.io/shippablequay/hitchcock1_sample_node .
+    #- docker push quay.io/shippablequay/hitchcock1_sample_node
+   # - docker tag -f drydock/u12nod:prod shiphitchcock1/hitchcock1_nod_multiplepush:multiple
+    #- docker build -t=shiphitchcock1/nod_multiplepush .
+    #- docker push shiphitchcock1/nod_multiplepush
     
-integrations:
-  hub:
-    - integrationName: ship-quay
-      type: quay.io
-    - integrationName: shiphitchcock1-hub
-      type: docker
+#integrations:
+ # hub:
+  #  - integrationName: ship-quay
+   #   type: quay.io
+    #- integrationName: shiphitchcock1-hub
+     # type: docker
