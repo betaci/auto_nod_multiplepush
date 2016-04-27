@@ -26,9 +26,11 @@ build:
     - ls -al
 
   post_ci:
-    - docker tag -f drydock/u12nod:prod quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
+   # - docker tag -f drydock/u12nod:prod quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
+    - docker build -t=quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush .
     - docker push quay.io/shippablequay/shiphitchcock1_sample_node:multiplepush
-    - docker tag -f drydock/u12nod:prod shiphitchcock1/hitchcock1_nod_multiplepush:multiple
+   # - docker tag -f drydock/u12nod:prod shiphitchcock1/hitchcock1_nod_multiplepush:multiple
+    - docker build -t=shiphitchcock1/hitchcock1_nod_multiplepush:multiple .
     - docker push shiphitchcock1/hitchcock1_nod_multiplepush:multiple
     
 integrations:
